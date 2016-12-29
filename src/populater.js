@@ -18,7 +18,7 @@ let populater =
             let builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
             let upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
             let repairers = _.filter(Game.creeps, (creep) => creep.memory.role == 'repairer');
-            let centryDrones = _.filter(Game.creeps, (creep) => creep.memory.role == 'centrydrone');
+            let centryDrones = _.filter(Game.creeps, (creep) => creep.memory.role == 'sentrydrone');
             let requiredharvesters = 0;
             let requiredsentrydrones = 2;
             let requiredupgraders = 4;
