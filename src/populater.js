@@ -11,8 +11,9 @@ let populater =
              }
         }
         const rooms = Game.rooms;
-        for (let room in rooms)
+        for (let roomname in rooms)
         {
+            let room = rooms[roomname];
             let harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
             let builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
             let upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');

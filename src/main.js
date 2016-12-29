@@ -30,8 +30,9 @@ module.exports.loop = function ()
     }
     autodeployerstructure.run();
     populater.run();
-    for (let creep of Game.creeps)
+    for (let name in Game.creeps)
     {
+        let creep = Game.creeps[name];
         if (creep.memory.role == 'harvester')
         {
             roleHarvester.run(creep);

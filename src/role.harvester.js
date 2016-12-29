@@ -52,12 +52,12 @@ let roleHarvester = {
             let sources = room.find(FIND_SOURCES);
 
             let harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
-	        for (let source of sources)
+	        for (let s in sources)
 	        {
                 let assignedMiners = 0;
-	            for (let harvester of harvesters)
+	            for (let h in harvesters)
 	            {
-	                if (source.id == harvester.memory.assignedSource)
+	                if (sources[s].id == harvesters[h].memory.assignedSource)
 	                {
 	                    assignedMiners +=1;
 	                }
@@ -65,7 +65,7 @@ let roleHarvester = {
 	            if (assignedMiners < 2 ) 
 	            {
 	                 
-	                newcreep.memory.assignedSource = source.id;
+	                newcreep.memory.assignedSource = sources[s].id;
 	                return;
 	            }
 	        }
