@@ -38,23 +38,19 @@ let populater =
             {
                 role = 'harvester';
             }
-            
-            if (centryDrones.length < requiredsentrydrones)
+            else if (centryDrones.length < requiredsentrydrones)
             {
                 role = 'sentrydrone';
             }
-           
-            if(upgraders.length < 3) 
+            else if(upgraders.length < 3)
             {
                 role = 'upgrader';
             }
-               
-            if(builders.length < 2) 
+            else if(builders.length < 2)
             {
                 role = 'builder';
             }
-                  
-            if(repairers.length < 2)
+            else if(repairers.length < 2)
             {
                 //this.CreateCreep('repairer', roomname);
             }
