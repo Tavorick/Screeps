@@ -63,12 +63,7 @@ let populater =
     
    CreateCreep:function(role, room)
    {
-       let newcreep = Game.spawns['Home'].createCreep(this.GetBodyParts(room, role), undefined, {role: role, spawnroom: room.name});
-
-       if (newcreep =! '-6')
-       {
-           console.log('Spawning new ' + role + ': ' + newcreep);
-       }
+       Game.spawns['Home'].createCreep(this.GetBodyParts(room, role), undefined, {role: role, spawnroom: room.name});
    },
    
    GetBodyParts:function(room, role)
