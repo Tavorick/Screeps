@@ -1,8 +1,8 @@
-var roleCentryDrone = 
+let roleSentryDrone =
 {
     run:function(creep)
     {
-        var hostiles = Game.rooms[creep.memory.spawnroom].find(FIND_HOSTILE_CREEPS);
+        let hostiles = Game.rooms[creep.memory.spawnroom].find(FIND_HOSTILE_CREEPS);
        
         if (hostiles.length == 0) 
         {
@@ -10,7 +10,7 @@ var roleCentryDrone =
         }
         else
         {
-            console.log(hostiles)
+            console.log(hostiles);
             this.Attack(creep, hostiles);
             creep.say('Destroy!');
         }
@@ -30,4 +30,4 @@ var roleCentryDrone =
     }    
 };
 
-module.exports = roleCentryDrone;
+module.exports = roleSentryDrone;

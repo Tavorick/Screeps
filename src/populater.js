@@ -1,33 +1,30 @@
-var populater =
+let populater =
 {
     
     run: function()
     {
-        for(var i in Memory.creeps) 
+        for(let i in Memory.creeps)
         {
              if(!Game.creeps[i])
              {
                  delete Memory.creeps[i];
              }
         }
-        var rooms = Game.rooms;
-        for (var roomname in rooms) 
+        const rooms = Game.rooms;
+        for (let roomname in rooms)
         {
-            var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
-            var builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
-            var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
-            var repairers = _.filter(Game.creeps, (creep) => creep.memory.role == 'repairer');
-            var centryDrones = _.filter(Game.creeps, (creep) => creep.memory.role == 'centrydrone');
-            var energyAvaileble = Game.rooms[roomname].energyAvailable;
-            var energyCapasity = Game.rooms[roomname].energyCapacityAvailable;
-            
-            var requiredharvesters = 0;
-            var requiredcentrydrones = 2;
-            var requiredupgraders = 4;
-            var requiredbuilders = 3;
-            var requiredrepairers = 0;
-            
-            var hostiles = Game.rooms[roomname].find(FIND_HOSTILE_CREEPS);
+            let harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
+            let builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
+            let upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
+            let repairers = _.filter(Game.creeps, (creep) => creep.memory.role == 'repairer');
+            let centryDrones = _.filter(Game.creeps, (creep) => creep.memory.role == 'centrydrone');
+            let requiredharvesters = 0;
+            let requiredcentrydrones = 2;
+            let requiredupgraders = 4;
+            let requiredbuilders = 3;
+            let requiredrepairers = 0;
+
+            let hostiles = Game.rooms[roomname].find(FIND_HOSTILE_CREEPS);
             if (hostiles.length) 
             {
                 requiredcentrydrones = 4;
@@ -35,7 +32,7 @@ var populater =
                 requiredbuilders = 1;
             }
             
-            for (var roomname in rooms)
+            for (let roomname in rooms)
             {
                 requiredharvesters += rooms[roomname].find(FIND_SOURCES).length;
             }
@@ -69,9 +66,9 @@ var populater =
     
    CreateCreep:function(role, roomname)
    {
-        var creep = Game.spawns['Home'].createCreep(this.GetBodyParts(roomname, role), undefined, {role: role, spawnroom: roomname});
+       let creep = Game.spawns['Home'].createCreep(this.GetBodyParts(roomname, role), undefined, {role: role, spawnroom: roomname});
         console.log(creep);
-       if (creep =! -6) 
+       if (creep =! -6)
        {
            console.log('Spawning new ' + role + ': ' + creep);
        }
@@ -80,11 +77,11 @@ var populater =
    
    GetBodyParts:function(roomname, role)
     {
-        var body = [WORK,CARRY,MOVE];
-        var energycost = 300;
-        var desiredpart = '';
-        var energyCapasity = Game.rooms[roomname].energyAvailable;
-        var partcost = 100;
+        let body = [WORK,CARRY,MOVE];
+        let energycost = 300;
+        let desiredpart = '';
+        let energyCapasity = Game.rooms[roomname].energyAvailable;
+        let partcost = 100;
         switch (role) 
         {
             case 'transporter':

@@ -1,4 +1,4 @@
-var roleHarvester = {
+let roleHarvester = {
 
     /** @param {Creep} creep **/
     run: function(creep) 
@@ -6,14 +6,14 @@ var roleHarvester = {
         this.AssignSource(creep);
 	    if(creep.carry.energy < creep.carryCapacity) 
 	    {
-            var source = Game.getObjectById(creep.memory.assignedSource);
+            let source = Game.getObjectById(creep.memory.assignedSource);
             if(creep.harvest(source) == ERR_NOT_IN_RANGE) 
             {
                 creep.moveTo(source);
             }
         }
         else {
-            var targets = creep.room.find(FIND_STRUCTURES, {
+            let targets = creep.room.find(FIND_STRUCTURES, {
                     filter: (structure) => {
                         return (structure.structureType == STRUCTURE_EXTENSION || structure.structureType == STRUCTURE_SPAWN) &&
                             structure.energy < structure.energyCapacity;
@@ -28,7 +28,7 @@ var roleHarvester = {
             }
             else
             {
-                var targets = creep.room.find(FIND_STRUCTURES, {
+                let targets = creep.room.find(FIND_STRUCTURES, {
                     filter: (structure) => {
                         return (structure.structureType == (STRUCTURE_CONTAINER && _.sum(structure.store) < structure.storeCapacity) 
                         ||STRUCTURE_TOWER && structure.energy < structure.energyCapacity )
@@ -48,14 +48,14 @@ var roleHarvester = {
 	{
 	    if (newcreep.memory.assignedSource == null) 
 	    {
-	        var room =  Game.rooms[newcreep.memory.spawnroom];
-	        var sources = room.find(FIND_SOURCES);
-	        
-	        var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
-	        for (var s in sources) 
+            let room =  Game.rooms[newcreep.memory.spawnroom];
+            let sources = room.find(FIND_SOURCES);
+
+            let harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
+	        for (let s in sources)
 	        {
-	            var assignedMiners = 0;
-	            for (var h in harvesters) 
+                let assignedMiners = 0;
+	            for (let h in harvesters)
 	            {
 	                if (sources[s].id == harvesters[h].memory.assignedSource) 
 	                {

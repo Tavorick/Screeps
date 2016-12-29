@@ -157,8 +157,8 @@ if (argv.local) {
 					};
 					req.open('GET', '//127.0.0.1:9090/'+ (now ? 'get' : 'wait'), true);
 					req.send();
-				};
-				update(true);
+                }
+                update(true);
 
 				// Look for console messages
 				let sconsole = document.body.getElementsByClassName('console-messages-list')[0];

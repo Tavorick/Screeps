@@ -1,4 +1,4 @@
-var roleUpgrader = 
+let roleUpgrader =
 {
     /** @param {Creep} creep **/
     run: function(creep) 
@@ -37,7 +37,7 @@ var roleUpgrader =
     MineResources:function(creep)
     {
         //mine the resources
-        var targets = creep.room.find(FIND_STRUCTURES, 
+        let targets = creep.room.find(FIND_STRUCTURES,
 	           {
                     filter: (structure) => 
                     {
@@ -46,7 +46,7 @@ var roleUpgrader =
 	           });
 	   if (targets.length > 0) 
 	   {
-	       creep.say('Picking up')
+	       creep.say('Picking up');
 	       if(creep.withdraw(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) 
            {
                 creep.moveTo(targets[0]);
@@ -54,7 +54,6 @@ var roleUpgrader =
 	   }
 	   else
 	   {
-	        var sources = creep.room.find(FIND_SOURCES);
 	        if(creep.harvest(creep.pos.findClosestByPath(FIND_SOURCES_ACTIVE)) == ERR_NOT_IN_RANGE)
             {
                 creep.moveTo(creep.pos.findClosestByPath(FIND_SOURCES_ACTIVE));

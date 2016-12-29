@@ -1,53 +1,55 @@
-var roleHarvester = require('role.harvester');
-var roleUpgrader = require('role.upgrader');
-var roleBuilder = require('role.builder');
-var populater = require('populater');
-var autodeployerstructure = require('autodeployer.structure');
-var rolerepairer = require('role.repairer');
-var roleSentryDrone = require('role.centrydrone');
-module.exports.loop = function () 
+let roleHarvester = require('./role.harvester');
+let roleUpgrader = require('./role.upgrader');
+let roleBuilder = require('./role.builder');
+let populater = require('./populater');
+let autodeployerstructure = require('./autodeployer.structure');
+let rolerepairer = require('./role.repairer');
+let roleSentryDrone = require('./role.centrydrone');
+module.exports.loop = function ()
 {
-    
-    var towers = Game.rooms.E61S78.find(FIND_STRUCTURES, {
+
+    let towers = Game.rooms.E61S78.find(FIND_STRUCTURES, {
         filter: (s) => s.structureType == STRUCTURE_TOWER
     });
-    var tower = towers[0];
-    if(tower == STRUCTURE_TOWER) 
+    let tower = towers[0];
+    if (tower == STRUCTURE_TOWER)
     {
-        var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
+        let closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
             filter: (structure) => structure.hits < structure.hitsMax
         });
-        if(closestDamagedStructure) {
+        if (closestDamagedStructure)
+        {
             tower.repair(closestDamagedStructure);
         }
 
-        var closestHostile = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
-        if(closestHostile) {
+        let closestHostile = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
+        if (closestHostile)
+        {
             tower.attack(closestHostile);
         }
     }
     autodeployerstructure.run();
     populater.run();
-    for(var name in Game.creeps) 
+    for (let name in Game.creeps)
     {
-        var creep = Game.creeps[name];
-        if(creep.memory.role == 'harvester')
+        let creep = Game.creeps[name];
+        if (creep.memory.role == 'harvester')
         {
             roleHarvester.run(creep);
         }
-        if(creep.memory.role == 'upgrader') 
+        if (creep.memory.role == 'upgrader')
         {
             roleUpgrader.run(creep);
         }
-        if(creep.memory.role == 'builder') 
+        if (creep.memory.role == 'builder')
         {
             roleBuilder.run(creep);
         }
-        if (creep.memory.role == 'repairer') 
+        if (creep.memory.role == 'repairer')
         {
             rolerepairer.run(creep);
         }
-        if (creep.memory.role == 'centrydrone') 
+        if (creep.memory.role == 'centrydrone')
         {
             roleSentryDrone.run(creep);
         }

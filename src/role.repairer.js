@@ -37,7 +37,7 @@ var roleBuilder =
 	       });
 	       if (targets.length > 0) 
 	       {
-	           creep.say('Picking up')
+	           creep.say('Picking up');;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	           if(creep.withdraw(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) 
                 {
                     creep.moveTo(targets[0]);
