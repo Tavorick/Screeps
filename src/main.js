@@ -10,7 +10,7 @@ module.exports.loop = function ()
 {
     for (let roomname in Game.rooms)
     {
-        room = Game.rooms(roomname);
+        room = Game.rooms[roomname];
         let towers = Game.rooms.E61S78.find(FIND_STRUCTURES, {
             filter: (s) => s.structureType == STRUCTURE_TOWER
         });
