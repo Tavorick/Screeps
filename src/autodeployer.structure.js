@@ -41,12 +41,13 @@ let autodeployerstructure =
 
         DeployExtentions: function (room, spawn)
         {
-            pos = spawn.pos;
-            room.createConstructionSite(pos.x + 2, pos.y + 2, 'extention');
-            room.createConstructionSite(pos.x + 2, pos.y, 'extention');
-            room.createConstructionSite(pos.x + 2, pos.y - 1, 'extention');
-            room.createConstructionSite(pos.x - 2, pos.y + 1, 'extention');
-            room.createConstructionSite(pos.x - 2, pos.y, 'extention');
+            let pos = spawn.pos;
+
+            room.createConstructionSite(pos.x + 2, pos.y + 2, STRUCTURE_EXTENSION);
+            room.createConstructionSite(pos.x + 2, pos.y, STRUCTURE_EXTENSION);
+            room.createConstructionSite(pos.x + 2, pos.y - 1, STRUCTURE_EXTENSION);
+            room.createConstructionSite(pos.x - 2, pos.y + 1, STRUCTURE_EXTENSION);
+            room.createConstructionSite(pos.x - 2, pos.y, STRUCTURE_EXTENSION);
         }
     };
 

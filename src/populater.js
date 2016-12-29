@@ -54,7 +54,10 @@ let populater =
             {
                 //this.CreateCreep('repairer', roomname);
             }
-            this.CreateCreep(role,room);
+            if(role != "")
+            {
+                this.CreateCreep(role,room);
+            }
         }
     },
     
