@@ -8,7 +8,7 @@ var roleSentryDrone = require('role.centrydrone');
 module.exports.loop = function () 
 {
     
-    var towers = Game.rooms.W49N71.find(FIND_STRUCTURES, {
+    var towers = Game.rooms.E61S78.find(FIND_STRUCTURES, {
         filter: (s) => s.structureType == STRUCTURE_TOWER
     });
     var tower = towers[0];

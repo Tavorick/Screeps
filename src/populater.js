@@ -23,7 +23,7 @@ var populater =
             
             var requiredharvesters = 0;
             var requiredcentrydrones = 2;
-            var requiredupgraders = 3;
+            var requiredupgraders = 4;
             var requiredbuilders = 3;
             var requiredrepairers = 0;
             
@@ -70,7 +70,7 @@ var populater =
    CreateCreep:function(role, roomname)
    {
         var creep = Game.spawns['Home'].createCreep(this.GetBodyParts(roomname, role), undefined, {role: role, spawnroom: roomname});
-        
+        console.log(creep);
        if (creep =! -6) 
        {
            console.log('Spawning new ' + role + ': ' + creep);
