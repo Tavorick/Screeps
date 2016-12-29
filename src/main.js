@@ -8,14 +8,17 @@ let roleSentryDrone = require('./role.sentrydrone');
 let roletower = require('./role.tower');
 module.exports.loop = function ()
 {
-
-    let towers = Game.rooms.E61S78.find(FIND_STRUCTURES, {
-        filter: (s) => s.structureType == STRUCTURE_TOWER
-    });
-    for (towerid in towers)
+    for (let roomname in Game.rooms)
     {
-        let tower = towers[towerid];
-        roletower.run(tower);
+        room = Game.rooms(roomname);
+        let towers = Game.rooms.E61S78.find(FIND_STRUCTURES, {
+            filter: (s) => s.structureType == STRUCTURE_TOWER
+        });
+        for (let towerid in towers)
+        {
+            let tower = towers[towerid];
+            roletower.run(tower);
+        }
     }
 
     autodeployerstructure.run();
