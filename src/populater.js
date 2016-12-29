@@ -11,7 +11,7 @@ let populater =
              }
         }
         const rooms = Game.rooms;
-        for (let roomname in rooms)
+        for (let room in rooms)
         {
             let harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
             let builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
@@ -19,68 +19,64 @@ let populater =
             let repairers = _.filter(Game.creeps, (creep) => creep.memory.role == 'repairer');
             let centryDrones = _.filter(Game.creeps, (creep) => creep.memory.role == 'centrydrone');
             let requiredharvesters = 0;
-            let requiredcentrydrones = 2;
+            let requiredsentrydrones = 2;
             let requiredupgraders = 4;
             let requiredbuilders = 3;
             let requiredrepairers = 0;
 
-            let hostiles = Game.rooms[roomname].find(FIND_HOSTILE_CREEPS);
+            let hostiles = room.find(FIND_HOSTILE_CREEPS);
             if (hostiles.length) 
             {
-                requiredcentrydrones = 4;
+                requiredsentrydrones = 4;
                 requiredupgraders = 1;
                 requiredbuilders = 1;
             }
-            
-            for (let roomname in rooms)
+            requiredharvesters += room.find(FIND_SOURCES).length;
+            let role = "";
+            if(harvesters.length < requiredharvesters * 2 &&  requiredsentrydrones < 4)
             {
-                requiredharvesters += rooms[roomname].find(FIND_SOURCES).length;
+                role = 'harvester';
             }
             
-            if(harvesters.length < requiredharvesters * 2 &&  requiredcentrydrones < 4) 
+            if (centryDrones.length < requiredsentrydrones)
             {
-                this.CreateCreep('harvester',roomname);
-            }
-            
-            if (centryDrones.length < requiredcentrydrones) 
-            {
-                this.CreateCreep('centrydrone',roomname);
+                role = 'sentrydrone';
             }
            
             if(upgraders.length < 3) 
             {
-                this.CreateCreep('upgrader', roomname);
+                role = 'upgrader';
             }
                
             if(builders.length < 2) 
             {
-                this.CreateCreep('builder', roomname);
+                role = 'builder';
             }
                   
             if(repairers.length < 2)
             {
                 //this.CreateCreep('repairer', roomname);
-            }               
+            }
+            this.CreateCreep(role,room);
         }
     },
     
-   CreateCreep:function(role, roomname)
+   CreateCreep:function(role, room)
    {
-       let creep = Game.spawns['Home'].createCreep(this.GetBodyParts(roomname, role), undefined, {role: role, spawnroom: roomname});
-        console.log(creep);
-       if (creep =! -6)
+       let newcreep = Game.spawns['Home'].createCreep(this.GetBodyParts(room, role), undefined, {role: role, spawnroom: room.name});
+
+       if (newcreep =! '-6')
        {
-           console.log('Spawning new ' + role + ': ' + creep);
+           console.log('Spawning new ' + role + ': ' + newcreep);
        }
-       
    },
    
-   GetBodyParts:function(roomname, role)
+   GetBodyParts:function(room, role)
     {
         let body = [WORK,CARRY,MOVE];
         let energycost = 300;
         let desiredpart = '';
-        let energyCapasity = Game.rooms[roomname].energyAvailable;
+        let energyCapasity = room.energyAvailable;
         let partcost = 100;
         switch (role) 
         {

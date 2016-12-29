@@ -5,14 +5,13 @@ let autodeployerstructure =
         {
             if (Memory.autodeploy)
             {
-                for (let roomName in Game.rooms)
+                for (let room of Game.rooms)
                 {
-                    let room = Game.rooms[roomName];
                     let spawns = room.find(FIND_MY_STRUCTURES, {filter: (s) => s.structureType == STRUCTURE_SPAWN});
-                    for (let spawnName in spawns)
+                    for (let spawn of spawns)
                     {
-                        this.DeployExtentions(room, spawns[spawnName]);
-                        this.DeployRoads(room, spawns[spawnName]);
+                        this.DeployExtentions(room, spawns[spawn]);
+                        this.DeployRoads(room, spawn);
                     }
                 }
             }
@@ -24,14 +23,12 @@ let autodeployerstructure =
             {
                 let sources = room.find(FIND_SOURCES);
                 let startpoint = spawn.pos;
-                for (let sourceid in sources)
+                for (let source of sources)
                 {
-                    let source = sources[sourceid];
+                    let source = sources[source];
                     let path = PathFinder.search(startpoint, {pos: source.pos, range: 1});
-
-                    for (let positionid in path.path)
+                    for (let position of path.path)
                     {
-                        let position = path.path[positionid];
                         room.createConstructionSite(position, 'road');
                     }
                 }
@@ -41,12 +38,12 @@ let autodeployerstructure =
 
         DeployExtentions: function (room, spawn)
         {
-            pos = spawn.pos;
-            room.createConstructionSite(pos.x + 2, pos.y + 2, 'extention');
-            room.createConstructionSite(pos.x + 2, pos.y, 'extention');
-            room.createConstructionSite(pos.x + 2, pos.y - 1, 'extention');
-            room.createConstructionSite(pos.x - 2, pos.y + 1, 'extention');
-            room.createConstructionSite(pos.x - 2, pos.y, 'extention');
+            let position = spawn.pos;
+            room.createConstructionSite(position.x + 2, position.y + 2, 'extention');
+            room.createConstructionSite(position.x + 2, position.y, 'extention');
+            room.createConstructionSite(position.x + 2, position.y - 1, 'extention');
+            room.createConstructionSite(position.x - 2, position.y + 1, 'extention');
+            room.createConstructionSite(position.x - 2, position.y, 'extention');
         }
     };
 

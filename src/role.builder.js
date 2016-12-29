@@ -1,4 +1,5 @@
-let roleBuilder = {
+let roleBuilder =
+{
 
     /** @param {Creep} creep **/
     run: function(creep) 
@@ -40,7 +41,6 @@ let roleBuilder = {
                     
                     target = structure;
                 }
-               
                 if (creep.repair(target) == ERR_NOT_IN_RANGE) 
                 {
                     creep.moveTo(target);
