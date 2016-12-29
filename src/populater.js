@@ -81,7 +81,7 @@ let populater =
                 desiredpart = 'CARRY';
                 break;
                 
-            case 'centrydrone':
+            case 'sentrydrone':
                 desiredpart = 'attack';
                 partcost = 70;
                 body = [MOVE, MOVE, TOUGH, ATTACK];
