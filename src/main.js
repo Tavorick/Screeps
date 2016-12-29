@@ -5,7 +5,7 @@ let populater = require('./populater');
 let autodeployerstructure = require('./autodeployer.structure');
 let rolerepairer = require('./role.repairer');
 let roleSentryDrone = require('./role.sentrydrone');
-let roletower = require('./role.tower;')
+let roletower = require('./role.tower');
 module.exports.loop = function ()
 {
 
