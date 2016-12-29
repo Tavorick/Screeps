@@ -4,7 +4,7 @@ let roleBuilder = require('./role.builder');
 let populater = require('./populater');
 let autodeployerstructure = require('./autodeployer.structure');
 let rolerepairer = require('./role.repairer');
-let roleSentryDrone = require('./role.centrydrone');
+let roleSentryDrone = require('./role.sentrydrone.js');
 module.exports.loop = function ()
 {
 
@@ -49,7 +49,7 @@ module.exports.loop = function ()
         {
             rolerepairer.run(creep);
         }
-        if (creep.memory.role == 'centrydrone')
+        if (creep.memory.role == 'sentrydrone')
         {
             roleSentryDrone.run(creep);
         }
