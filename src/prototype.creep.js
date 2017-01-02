@@ -15,30 +15,34 @@ Creep.prototype.runRole =
 
 
 Creep.prototype.getEnergy =
-    function ()
-    {
-        let targets = this.room.find(FIND_STRUCTURES,
-            {
-                filter: (structure) =>
-                {
-                    return structure.structureType == STRUCTURE_CONTAINER && _.sum(structure.store) > 200 ;
-                }
+    function (useContainer, useSource) {
+        /** @type {StructureContainer} */
+        let container;
+        // if the Creep should look for containers
+        if (useContainer) {
+            // find closest container
+            container = this.pos.findClosestByPath(FIND_STRUCTURES, {
+                filter: s => (s.structureType == STRUCTURE_CONTAINER || s.structureType == STRUCTURE_STORAGE) &&
+                s.store[RESOURCE_ENERGY] > 0
             });
-        if (targets.length > 0)
-        {
-            this.say('Picking up');
-            if(this.withdraw(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE)
-            {
-                this.moveTo(targets[0]);
+            // if one was found
+            if (container != undefined) {
+                // try to withdraw energy, if the container is not in range
+                if (this.withdraw(container, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                    // move towards it
+                    this.moveTo(container);
+                }
             }
         }
-        else
-        {
-            let closestSource = this.pos.findClosestByPath(FIND_SOURCES_ACTIVE);
-            if(this.harvest(closestSource) == ERR_NOT_IN_RANGE)
-            {
-                this.say('harvesting');
-                this.moveTo(closestSource);
+        // if no container was found and the Creep should look for Sources
+        if (container == undefined && useSource) {
+            // find closest source
+            var source = this.pos.findClosestByPath(FIND_SOURCES_ACTIVE);
+
+            // try to harvest energy, if the source is not in range
+            if (this.harvest(source) == ERR_NOT_IN_RANGE) {
+                // move towards it
+                this.moveTo(source);
             }
         }
     };
