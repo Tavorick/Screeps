@@ -15,9 +15,26 @@ module.exports.loop = function ()
         }
     }
     autodeployerstructure.run();
-    populater.run();
-    for (let name in Game.creeps) {
+    for (let name in Memory.creeps)
+    {
+        // and checking if the creep is still alive
+        if (Game.creeps[name] == undefined)
+        {
+            // if not, delete the memory entry
+            delete Memory.creeps[name];
+        }
+    }
+
+    // for each creeps
+    for (let name in Game.creeps)
+    {
         // run creep logic
         Game.creeps[name].runRole();
+    }
+
+    for (let spawnName in Game.spawns)
+    {
+        // run spawn logic
+        Game.spawns[spawnName].spawnCreepsIfNecessary();
     }
 }
