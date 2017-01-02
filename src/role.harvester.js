@@ -2,13 +2,13 @@ module.exports =
     {
 
     /** @param {Creep} creep **/
-    run: function(creep) 
+    run: function(creep)
     {
         this.AssignSource(creep);
-	    if(creep.carry.energy < creep.carryCapacity) 
+	    if(creep.carry.energy < creep.carryCapacity)
 	    {
             let source = Game.getObjectById(creep.memory.assignedSource);
-            if(creep.harvest(source) == ERR_NOT_IN_RANGE) 
+            if(creep.harvest(source) == ERR_NOT_IN_RANGE)
             {
                 creep.moveTo(source);
             }
@@ -20,8 +20,8 @@ module.exports =
                             structure.energy < structure.energyCapacity;
                     }
             });
-            
-            if(targets.length > 0) 
+
+            if(targets.length > 0)
             {
                 if(creep.transfer(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(targets[0]);
@@ -31,23 +31,23 @@ module.exports =
             {
                 let targets = creep.room.find(FIND_STRUCTURES, {
                     filter: (structure) => {
-                        return (structure.structureType == (STRUCTURE_CONTAINER && _.sum(structure.store) < structure.storeCapacity) 
-                        ||STRUCTURE_TOWER && structure.energy < structure.energyCapacity )
+                        return ((structure.structureType == STRUCTURE_CONTAINER && _.sum(structure.store) < structure.storeCapacity)
+                        ||(STRUCTURE_TOWER && structure.energy < structure.energyCapacity))
                     }});
-                  if (targets.length > 0) 
+                  if (targets.length > 0)
                   {
-                      if(creep.transfer(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) 
+                      if(creep.transfer(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE)
                       {
                         creep.moveTo(targets[0]);
                       }
-                  }  
+                  }
             }
         }
 	},
 	
 	AssignSource: function(newcreep)
 	{
-	    if (newcreep.memory.assignedSource == null) 
+	    if (newcreep.memory.assignedSource == null)
 	    {
             let room =  Game.rooms[newcreep.memory.spawnroom];
             let sources = room.find(FIND_SOURCES);
@@ -63,9 +63,9 @@ module.exports =
 	                    assignedMiners +=1;
 	                }
 	            }
-	            if (assignedMiners < 2 ) 
+	            if (assignedMiners < 2 )
 	            {
-	                 
+
 	                newcreep.memory.assignedSource = sources[s].id;
 	                return;
 	            }
