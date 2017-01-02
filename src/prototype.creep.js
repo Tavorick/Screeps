@@ -2,6 +2,7 @@ let roles = {
     harvester: require('./role.harvester'),
     upgrader: require('./role.upgrader'),
     builder: require('./role.builder'),
+    miner: require('./role.miner'),
     sentrydrone: require('./role.sentrydrone'),
     transporter: require('./role.transporter')
 };
