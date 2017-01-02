@@ -93,9 +93,6 @@ StructureSpawn.prototype.spawnCreepsIfNecessary =
             for (let role of listOfRoles) {
                 console.log(role + ": " + numberOfCreeps[role]);
             }
-            for (let roomName in numberOfLongDistanceHarvesters) {
-                console.log("LongDistanceHarvester" + roomName + ": " + numberOfLongDistanceHarvesters[roomName]);
-            }
         }
     };
 
