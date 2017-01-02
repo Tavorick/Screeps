@@ -36,7 +36,7 @@ module.exports =
 
     MineResources:function(creep)
     {
-        creep.getEnergy();
+        creep.getEnergy(true,true);
 
         //if creep is full of energy then swap state to upgrade the controller
        if(creep.carry.energy === creep.carryCapacity)
