@@ -18,7 +18,7 @@ module.exports.loop = function ()
             roletower.run(towers[towerid]);
         }
     }
-
+    //test
     autodeployerstructure.run();
     populater.run();
     for (let name in Game.creeps)
