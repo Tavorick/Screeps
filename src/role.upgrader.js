@@ -1,4 +1,4 @@
-let roleUpgrader =
+module.exports =
 {
     /** @param {Creep} creep **/
     run: function(creep) 
@@ -36,29 +36,7 @@ let roleUpgrader =
 
     MineResources:function(creep)
     {
-        //mine the resources
-        let targets = creep.room.find(FIND_STRUCTURES,
-	           {
-                    filter: (structure) => 
-                    {
-                        return structure.structureType == STRUCTURE_CONTAINER && _.sum(structure.store) > 200 ;
-                    }
-	           });
-	   if (targets.length > 0) 
-	   {
-	       creep.say('Picking up');
-	       if(creep.withdraw(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) 
-           {
-                creep.moveTo(targets[0]);
-	       }
-	   }
-	   else
-	   {
-	        if(creep.harvest(creep.pos.findClosestByPath(FIND_SOURCES_ACTIVE)) == ERR_NOT_IN_RANGE)
-            {
-                creep.moveTo(creep.pos.findClosestByPath(FIND_SOURCES_ACTIVE));
-            }
-	   }
+        creep.getEnergy();
 
         //if creep is full of energy then swap state to upgrade the controller
        if(creep.carry.energy === creep.carryCapacity)
@@ -83,8 +61,4 @@ let roleUpgrader =
             creep.memory.state="MineResources";
         }
     }//end of UpgradeController:function(creep){
-};//end of roleupgrader 
-
-
-
-module.exports = roleUpgrader;
+};//end of roleupgrader

@@ -1,10 +1,6 @@
-let roleHarvester = require('./role.harvester');
-let roleUpgrader = require('./role.upgrader');
-let roleBuilder = require('./role.builder');
+require('./prototype.creep');
 let populater = require('./autodeployer.creeps');
 let autodeployerstructure = require('./autodeployer.structure');
-let rolerepairer = require('./role.repairer');
-let roleSentryDrone = require('./role.sentrydrone');
 let roletower = require('./role.tower');
 module.exports.loop = function ()
 {
@@ -18,31 +14,10 @@ module.exports.loop = function ()
             roletower.run(towers[towerid]);
         }
     }
-    //test
     autodeployerstructure.run();
     populater.run();
-    for (let name in Game.creeps)
-    {
-        let creep = Game.creeps[name];
-        if (creep.memory.role == 'harvester')
-        {
-            roleHarvester.run(creep);
-        }
-        if (creep.memory.role == 'upgrader')
-        {
-            roleUpgrader.run(creep);
-        }
-        if (creep.memory.role == 'builder')
-        {
-            roleBuilder.run(creep);
-        }
-        if (creep.memory.role == 'repairer')
-        {
-            rolerepairer.run(creep);
-        }
-        if (creep.memory.role == 'sentrydrone')
-        {
-            roleSentryDrone.run(creep);
-        }
+    for (let name in Game.creeps) {
+        // run creep logic
+        Game.creeps[name].runRole();
     }
 }

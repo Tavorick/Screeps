@@ -1,4 +1,4 @@
-let roleSentryDrone =
+module.exports =
 {
     run:function(creep)
     {
@@ -29,5 +29,3 @@ let roleSentryDrone =
         }
     }    
 };
-
-module.exports = roleSentryDrone;
