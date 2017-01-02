@@ -36,7 +36,7 @@ let roleBuilder =
                     if (targets[i].structureType == STRUCTURE_WALL && targets[i].hits < 100000)
                     {
                         target = targets[i];
-                        return;
+                        break;
                     }
                     
                     target = structure;
