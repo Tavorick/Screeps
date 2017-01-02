@@ -3,7 +3,7 @@ let tower =
         run:function(tower)
         {
             let closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
-                filter: (structure) => structure.hits < structure.hitsMax && structure != STRUCTURE_WALL
+                filter: (structure) => structure.hits < structure.hitsMax && structure.structureType != STRUCTURE_WALL
             });
 
             if (closestDamagedStructure)
