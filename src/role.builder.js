@@ -49,7 +49,7 @@ module.exports =
 	    }
 	    else
         {
-            creep.getEnergy();
+            creep.getEnergy(true,true);
 	    }
         
 	}
