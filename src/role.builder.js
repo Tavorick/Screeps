@@ -33,7 +33,7 @@ let roleBuilder =
                 for (let i in targets)
                 {
                     let structure = targets[i];
-                    if (targets[i] == STRUCTURE_WALL && targets[i].hits < 100000) 
+                    if (targets[i].structureType == STRUCTURE_WALL && targets[i].hits < 100000)
                     {
                         target = targets[i];
                         return;
