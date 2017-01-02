@@ -1,5 +1,5 @@
 require('./prototype.creep');
-let populater = require('./autodeployer.creeps');
+require('./prototype.spawn');
 let autodeployerstructure = require('./autodeployer.structure');
 let roletower = require('./role.tower');
 module.exports.loop = function ()
