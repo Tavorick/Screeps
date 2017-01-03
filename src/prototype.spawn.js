@@ -1,4 +1,4 @@
-var listOfRoles = ['harvester', 'transporter', 'claimer', 'upgrader', 'repairer', 'builder', 'wallRepairer'];
+var listOfRoles = ['harvester', 'transporter', 'upgrader', 'repairer', 'builder', 'miner'];
 
 // create a new function for StructureSpawn
 StructureSpawn.prototype.spawnCreepsIfNecessary =
@@ -8,7 +8,42 @@ StructureSpawn.prototype.spawnCreepsIfNecessary =
         // find all creeps in room
         /** @type {Array.<Creep>} */
         let creepsInRoom = room.find(FIND_MY_CREEPS);
+        let defaultminharvesters = 4;
+        let defaultmintransporters = 4;
+        let defaultminupgraders = 6;
+        let defaultminrepairers = 2;
+        let defaultminbuilders = 2;
+        let defaultminminers = 2;
 
+        for (let role of listOfRoles)
+        {
+            if (Memory.mincreeps[role] == undefined)
+            {
+               switch (role)
+               {
+                   case 'harvester':
+                       this.Memory.mincreeps[role] == defaultminharvesters;
+                       break;
+
+                   case 'transporter':
+                       this.Memory.mincreeps[role] == defaultmintransporters;
+                       break;
+                   case 'upgrader':
+                       this.Memory.mincreeps[role] == defaultminupgraders;
+                       break;
+                   case 'repairer':
+                       this.Memory.mincreeps[role] == defaultminrepairers;
+                       break;
+                   case 'builder':
+                       this.Memory.mincreeps[role] == defaultminbuilders;
+                       break;
+                   case 'miner':
+                       this.Memory.mincreeps[role] == defaultminminers;
+                       break;
+               }
+
+            }
+        }
         // count the number of creeps alive for each role in this room
         // _.sum will count the number of properties in Game.creeps filtered by the
         //  arrow function, which checks for the creep being a specific role
@@ -64,14 +99,13 @@ StructureSpawn.prototype.spawnCreepsIfNecessary =
                 }
             }
         }
-
         // if none of the above caused a spawn command check for other roles
         if (name == undefined)
         {
             for (let role of listOfRoles)
             {
                 // if no claim order was found, check other roles
-                if (numberOfCreeps[role] < Memory.minCreeps[role])
+                if (numberOfCreeps[role] < this.Memory.mincreeps[role])
                 {
                     if (role == 'transporter')
                     {
