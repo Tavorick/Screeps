@@ -10,8 +10,8 @@ StructureSpawn.prototype.spawnCreepsIfNecessary =
         let creepsInRoom = room.find(FIND_MY_CREEPS);
 
         let defaultmincreeps = ['harvester', 'transporter', 'upgrader', 'repairer', 'builder', 'miner'];
-        defaultmincreeps['harvester'] = 4;
-        defaultmincreeps['transporter'] = 4;
+        defaultmincreeps['harvester'] = 1;
+        defaultmincreeps['transporter'] = 2;
         defaultmincreeps['upgrader'] = 6;
         defaultmincreeps['repairer'] = 2;
         defaultmincreeps['builder'] = 2;
