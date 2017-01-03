@@ -8,39 +8,20 @@ StructureSpawn.prototype.spawnCreepsIfNecessary =
         // find all creeps in room
         /** @type {Array.<Creep>} */
         let creepsInRoom = room.find(FIND_MY_CREEPS);
-        let defaultminharvesters = 4;
-        let defaultmintransporters = 4;
-        let defaultminupgraders = 6;
-        let defaultminrepairers = 2;
-        let defaultminbuilders = 2;
-        let defaultminminers = 2;
+
+        let defaultmincreeps = ['harvester', 'transporter', 'upgrader', 'repairer', 'builder', 'miner'];
+        defaultmincreeps['harvester'] = 4;
+        defaultmincreeps['transporter'] = 4;
+        defaultmincreeps['upgrader'] = 6;
+        defaultmincreeps['repairer'] = 2;
+        defaultmincreeps['builder'] = 2;
+        defaultmincreeps['miner'] = 2;
 
         for (let role of listOfRoles)
         {
             if (this.memory.mincreeps[role] == undefined)
             {
-               switch (role)
-               {
-                   case 'harvester':
-                       this.memory.mincreeps[role] = defaultminharvesters;
-                       break;
 
-                   case 'transporter':
-                       this.memory.mincreeps[role] = defaultmintransporters;
-                       break;
-                   case 'upgrader':
-                       this.memory.mincreeps[role] = defaultminupgraders;
-                       break;
-                   case 'repairer':
-                       this.memory.mincreeps[role] = defaultminrepairers;
-                       break;
-                   case 'builder':
-                       this.memory.mincreeps[role] = defaultminbuilders;
-                       break;
-                   case 'miner':
-                       this.memory.mincreeps[role] = defaultminminers;
-                       break;
-               }
 
             }
         }
@@ -104,8 +85,7 @@ StructureSpawn.prototype.spawnCreepsIfNecessary =
         {
             for (let role of listOfRoles)
             {
-                // if no claim order was found, check other roles
-                if (numberOfCreeps[role] < this.memory.mincreeps[role])
+                if (numberOfCreeps[role] < defaultmincreeps[role])
                 {
                     if (role == 'transporter')
                     {
