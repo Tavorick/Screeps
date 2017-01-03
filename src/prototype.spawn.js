@@ -17,28 +17,28 @@ StructureSpawn.prototype.spawnCreepsIfNecessary =
 
         for (let role of listOfRoles)
         {
-            if (Memory.mincreeps[role] == undefined)
+            if (this.memory.mincreeps[role] == undefined)
             {
                switch (role)
                {
                    case 'harvester':
-                       this.Memory.mincreeps[role] == defaultminharvesters;
+                       this.memory.mincreeps[role] == defaultminharvesters;
                        break;
 
                    case 'transporter':
-                       this.Memory.mincreeps[role] == defaultmintransporters;
+                       this.memory.mincreeps[role] == defaultmintransporters;
                        break;
                    case 'upgrader':
-                       this.Memory.mincreeps[role] == defaultminupgraders;
+                       this.memory.mincreeps[role] == defaultminupgraders;
                        break;
                    case 'repairer':
-                       this.Memory.mincreeps[role] == defaultminrepairers;
+                       this.memory.mincreeps[role] == defaultminrepairers;
                        break;
                    case 'builder':
-                       this.Memory.mincreeps[role] == defaultminbuilders;
+                       this.memory.mincreeps[role] == defaultminbuilders;
                        break;
                    case 'miner':
-                       this.Memory.mincreeps[role] == defaultminminers;
+                       this.memory.mincreeps[role] == defaultminminers;
                        break;
                }
 
@@ -105,7 +105,7 @@ StructureSpawn.prototype.spawnCreepsIfNecessary =
             for (let role of listOfRoles)
             {
                 // if no claim order was found, check other roles
-                if (numberOfCreeps[role] < this.Memory.mincreeps[role])
+                if (numberOfCreeps[role] < this.memory.mincreeps[role])
                 {
                     if (role == 'transporter')
                     {
