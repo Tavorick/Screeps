@@ -16,15 +16,6 @@ StructureSpawn.prototype.spawnCreepsIfNecessary =
         defaultmincreeps['repairer'] = 2;
         defaultmincreeps['builder'] = 2;
         defaultmincreeps['miner'] = 2;
-
-        for (let role of listOfRoles)
-        {
-            if (this.memory.mincreeps[role] == undefined)
-            {
-
-
-            }
-        }
         // count the number of creeps alive for each role in this room
         // _.sum will count the number of properties in Game.creeps filtered by the
         //  arrow function, which checks for the creep being a specific role
