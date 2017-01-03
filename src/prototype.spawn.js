@@ -22,23 +22,23 @@ StructureSpawn.prototype.spawnCreepsIfNecessary =
                switch (role)
                {
                    case 'harvester':
-                       this.memory.mincreeps[role] == defaultminharvesters;
+                       this.memory.mincreeps[role] = defaultminharvesters;
                        break;
 
                    case 'transporter':
-                       this.memory.mincreeps[role] == defaultmintransporters;
+                       this.memory.mincreeps[role] = defaultmintransporters;
                        break;
                    case 'upgrader':
-                       this.memory.mincreeps[role] == defaultminupgraders;
+                       this.memory.mincreeps[role] = defaultminupgraders;
                        break;
                    case 'repairer':
-                       this.memory.mincreeps[role] == defaultminrepairers;
+                       this.memory.mincreeps[role] = defaultminrepairers;
                        break;
                    case 'builder':
-                       this.memory.mincreeps[role] == defaultminbuilders;
+                       this.memory.mincreeps[role] = defaultminbuilders;
                        break;
                    case 'miner':
-                       this.memory.mincreeps[role] == defaultminminers;
+                       this.memory.mincreeps[role] = defaultminminers;
                        break;
                }
 
