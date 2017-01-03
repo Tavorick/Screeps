@@ -71,7 +71,7 @@ StructureSpawn.prototype.spawnCreepsIfNecessary =
             for (let role of listOfRoles)
             {
                 // if no claim order was found, check other roles
-                if (numberOfCreeps[role] < this.memory.minCreeps[role])
+                if (numberOfCreeps[role] < Memory.minCreeps[role])
                 {
                     if (role == 'transporter')
                     {
