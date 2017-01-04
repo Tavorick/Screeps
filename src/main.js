@@ -1,5 +1,6 @@
 require('./prototype.creep');
 require('./prototype.spawn');
+require('./prototypeflag');
 let autodeployerstructure = require('./autodeployer.structure');
 let roletower = require('./role.tower');
 module.exports.loop = function ()
@@ -24,7 +25,11 @@ module.exports.loop = function ()
             delete Memory.creeps[name];
         }
     }
-
+    for(let flagname in Game.flags)
+    {
+        //noinspection JSValidateTypes
+        Game.flags(flagname).run();
+    }
     // for each creeps
     for (let name in Game.creeps)
     {
