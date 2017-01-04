@@ -5,7 +5,8 @@ let roles = {
     miner: require('./role.miner'),
     sentrydrone: require('./role.sentrydrone'),
     transporter: require('./role.transporter'),
-    repairer: require('./role.repairer')
+    repairer: require('./role.repairer'),
+    longrangeharvester: require('./role.longrangeharvester')
 };
 
 Creep.prototype.runRole =
