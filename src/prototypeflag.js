@@ -20,5 +20,5 @@ Flag.prototype.PrepareMining = function(room)
         Memory.remoteminingtargets = {};
     }
 
-    Memory.remoteminingtargets = (this.pos);
+    Memory.remoteminingtargets = (this.pos.id);
 };
