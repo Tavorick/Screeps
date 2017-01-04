@@ -15,9 +15,9 @@ Flag.prototype.run = function()
 
 Flag.prototype.PrepareMining = function(room)
 {
-    if (Game.memory.remoteminingtargets == undefined)
+    if (Memory.remoteminingtargets == undefined)
     {
-        Game.memory.remoteminingtargets = {};
+        Memory.remoteminingtargets = new array();
     }
-    Game.memory.remoteminingtargets.push(this.pos);
+    Memory.remoteminingtargets.push(this.pos);
 };
