@@ -10,7 +10,7 @@ Flag.prototype.run = function()
     {
 
     }
-}
+};
 
 
 Flag.prototype.PrepareMining = function(room)
@@ -40,4 +40,4 @@ Flag.prototype.PrepareMining = function(room)
         }
         this.memory.mineroom= false;
     }
-}
+};
