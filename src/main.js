@@ -27,8 +27,7 @@ module.exports.loop = function ()
     }
     for(let flagname in Game.flags)
     {
-        //noinspection JSValidateTypes
-        Game.flags(flagname).run();
+        Game.flags[flagname].run();
     }
     // for each creeps
     for (let name in Game.creeps)
