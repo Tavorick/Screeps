@@ -1,4 +1,4 @@
-var listOfRoles = ['harvester', 'transporter', 'upgrader', 'repairer', 'builder', 'miner'];
+var listOfRoles = ['harvester', 'transporter', 'upgrader', 'repairer', 'builder', 'miner','longrangeharvester'];
 
 // create a new function for StructureSpawn
 StructureSpawn.prototype.spawnCreepsIfNecessary =
@@ -91,6 +91,21 @@ StructureSpawn.prototype.spawnCreepsIfNecessary =
             }
         }
 
+        let numberOfLongDistanceHarvesters = {};
+        if (name == undefined) {
+            // count the number of long distance harvesters globally
+            for (let roomName in this.memory.minLongDistanceHarvesters)
+            {
+                numberOfLongDistanceHarvesters[roomName] = _.sum(Game.creeps, (c) =>
+                c.memory.role == 'longrangeharvester' && c.memory.target == roomName)
+
+                if (numberOfLongDistanceHarvesters[roomName] < this.memory.minLongDistanceHarvesters[roomName])
+                {
+                    name = this.createLongDistanceHarvester(maxEnergy, 2, room.name, roomName, 0);
+                }
+            }
+        }
+
         // print name to console if spawning was a success
         if (name != undefined && _.isString(name))
         {
@@ -153,4 +168,40 @@ StructureSpawn.prototype.createtransporter =
 
         // create creep with the created body and the role 'transporter'
         return this.createCreep(body, undefined, { role: 'transporter', working: false });
+    };
+
+StructureSpawn.prototype.createLongDistanceHarvester =
+    function (energy, numberOfWorkParts, home, target, sourceIndex)
+    {
+        // create a body with the specified number of WORK parts and one MOVE part per non-MOVE part
+        var body = [];
+        for (let i = 0; i < numberOfWorkParts; i++)
+        {
+            body.push(WORK);
+        }
+
+        // 150 = 100 (cost of WORK) + 50 (cost of MOVE)
+        energy -= 150 * numberOfWorkParts;
+
+        var numberOfParts = Math.floor(energy / 100);
+        // make sure the creep is not too big (more than 50 parts)
+        numberOfParts = Math.min(numberOfParts, Math.floor((50 - numberOfWorkParts * 2) / 2));
+        for (let i = 0; i < numberOfParts; i++)
+        {
+            body.push(CARRY);
+        }
+        for (let i = 0; i < numberOfParts + numberOfWorkParts; i++)
+        {
+            body.push(MOVE);
+        }
+
+        // create creep with the created body
+        return this.createCreep(body, undefined,
+            {
+            role: 'longrangeharvester',
+            home: home,
+            target: target,
+            sourceIndex: sourceIndex,
+            working: false
+        });
     };
