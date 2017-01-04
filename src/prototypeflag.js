@@ -19,5 +19,8 @@ Flag.prototype.PrepareMining = function(room)
     {
         Memory.remoteminingtargets = [];
     }
-    Memory.remoteminingtargets.push(this.pos);
+    let targets = Memory.remoteminingtargets;
+    targets.push(this.pos);
+    Memory.remoteminingtargets = targets;
+
 };
