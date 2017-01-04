@@ -1,6 +1,6 @@
 Flag.prototype.run = function()
 {
-    let room = this.room;
+    let room = Game.rooms[this.room];
     if (this.memory.mineroom == true)
     {
         this.PrepareMining(room);
