@@ -38,5 +38,6 @@ Flag.prototype.PrepareMining = function(room)
                 }
             }
         }
+        this.memory.mineroom= false;
     }
 }
