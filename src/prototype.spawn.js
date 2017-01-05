@@ -9,13 +9,27 @@ StructureSpawn.prototype.spawnCreepsIfNecessary =
         /** @type {Array.<Creep>} */
         let creepsInRoom = room.find(FIND_MY_CREEPS);
 
-        let defaultmincreeps = ['harvester', 'transporter', 'upgrader', 'repairer', 'builder', 'miner'];
+        let defaultmincreeps = ['harvester', 'transporter', 'upgrader', 'repairer', 'builder', 'miner','sentrydrone'];
         defaultmincreeps['harvester'] = 1;
         defaultmincreeps['transporter'] = 2;
         defaultmincreeps['upgrader'] = 6;
         defaultmincreeps['repairer'] = 2;
         defaultmincreeps['builder'] = 2;
         defaultmincreeps['miner'] = 2;
+        defaultmincreeps['sentrydrone'] = 1;
+
+        let hostiles = room.find(FIND_HOSTILE_CREEPS);
+
+        if (hostiles.length != 0)
+        {
+            defaultmincreeps['harvester'] = 4;
+            defaultmincreeps['transporter'] = 0;
+            defaultmincreeps['upgrader'] = 0;
+            defaultmincreeps['repairer'] = 2;
+            defaultmincreeps['builder'] = 0;
+            defaultmincreeps['miner'] = 0;
+            defaultmincreeps['sentrydrone'] = 6;
+        }
         // count the number of creeps alive for each role in this room
         // _.sum will count the number of properties in Game.creeps filtered by the
         //  arrow function, which checks for the creep being a specific role
@@ -81,6 +95,10 @@ StructureSpawn.prototype.spawnCreepsIfNecessary =
                     if (role == 'transporter')
                     {
                         name = this.createtransporter(150);
+                    }
+                    else if (role == 'sentrydrone')
+                    {
+                        name = this.CreateSentryDrone(maxEnergy);
                     }
                     else
                     {
@@ -204,4 +222,17 @@ StructureSpawn.prototype.createLongDistanceHarvester =
             sourceIndex: sourceIndex,
             working: false
         });
+    };
+
+StructureSpawn.prototype.CreateSentryDrone =
+    function (energy)
+    {
+        let cost = 380;
+        let body = [MOVE, TOUGH, ATTACK, ATTACK, RANGED_ATTACK, TOUGH];
+        while (cost < energy)
+        {
+            cost += cost;
+            body.push(body);
+        }
+        return this.createCreep(body, undefined, { role: 'sentrydrone'});
     };
