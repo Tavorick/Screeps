@@ -231,7 +231,7 @@ StructureSpawn.prototype.CreateSentryDrone =
         let body = [MOVE, TOUGH, ATTACK, ATTACK, RANGED_ATTACK, TOUGH];
         while (cost < energy)
         {
-            cost += cost;
+            cost += cost + 100 ;
             body.push(body);
         }
         return this.createCreep(body, undefined, { role: 'sentrydrone'});
